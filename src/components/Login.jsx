@@ -2,9 +2,9 @@ import { useState } from "react";
 
 /*
  WHY this component exists:
- - Prevents invalid login attempts
- - Improves UX with loading & error states
- - Centralizes client-side auth behavior
+ - Centralizes login logic
+ - Prevents invalid form submission
+ - Improves UX with real-time feedback
 */
 
 export default function Login() {
@@ -12,22 +12,21 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
-  // Improved validation with clearer feedback
+  // Basic client-side validation
   const validateForm = () => {
-    if (!email.trim() || !password.trim()) {
-      setError("All fields are required");
+    if (!email || !password) {
+      setError("Email and password are required");
       return false;
     }
 
     if (!email.includes("@")) {
-      setError("Email format is invalid");
+      setError("Please enter a valid email address");
       return false;
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters long");
+      setError("Password must be at least 6 characters");
       return false;
     }
 
@@ -37,24 +36,23 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    setSuccess(false);
 
-    // Prevent unnecessary requests
+    // Prevents unnecessary API calls
     if (!validateForm()) return;
 
     setLoading(true);
 
-    // Simulated API call delay
+    // Simulated authentication request
     setTimeout(() => {
       setLoading(false);
 
-      // Demo credentials
+      // Fake auth logic for demo purposes
       if (email === "test@example.com" && password === "password123") {
-        setSuccess(true);
+        alert("Login successful");
       } else {
-        setError("Incorrect email or password");
+        setError("Invalid credentials");
       }
-    }, 1200);
+    }, 1000);
   };
 
   return (
@@ -62,13 +60,11 @@ export default function Login() {
       <h2>Login</h2>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>Login successful</p>}
 
       <input
         type="email"
         placeholder="Email"
         value={email}
-        disabled={loading}
         onChange={(e) => setEmail(e.target.value)}
       />
 
@@ -76,13 +72,13 @@ export default function Login() {
         type="password"
         placeholder="Password"
         value={password}
-        disabled={loading}
         onChange={(e) => setPassword(e.target.value)}
       />
 
       <button type="submit" disabled={loading}>
-        {loading ? "Authenticating..." : "Login"}
+        {loading ? "Logging in..." : "Login"}
       </button>
     </form>
   );
 }
+
