@@ -3,6 +3,8 @@
  - Centralizes database connection logic
  - Prevents multiple connections
  - Allows easy configuration changes
+ - Error handling
+ - Connection status logging
 */
 
 const dbConfig = {
