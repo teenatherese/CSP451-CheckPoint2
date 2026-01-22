@@ -46,3 +46,6 @@ npm run lint
 - Client-side validation
 - Error handling
 - Improved login UX
+
+This project includes authentication features.
+
