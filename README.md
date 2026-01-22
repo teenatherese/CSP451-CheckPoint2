@@ -41,11 +41,18 @@ To intentionally create a merge conflict, edit the same lines in one of:
 ```bash
 npm test
 npm run lint
-```
+feature/user-authentication
+
 ## User Authentication
 - Client-side validation
 - Error handling
 - Improved login UX
 
+<<<<<<< HEAD
 This project includes authentication features.
 
+=======
+## Database Connection
+- Central DB module
+- Environment-based conf
+>>>>>>> 89298f3c63a693a1d6022c3b6b7e9f03c242e01b
