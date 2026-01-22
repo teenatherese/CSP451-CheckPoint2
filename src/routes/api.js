@@ -1,22 +1,15 @@
-import express from "express";
-import { getUsers, createUser } from "../controllers/userController.js";
-
-/*
- WHY this file exists:
- - Central routing layer
- - Keeps routes separate from business logic
-*/
+const express = require("express");
 
 const router = express.Router();
 
-// Health check endpoint
+/**
+ * Starter endpoint to prove the API works.
+ * Feature branch: feature/api-endpoints should expand this structure:
+ * - add route modules, controllers, and validation
+ * - add at least one POST endpoint
+ */
 router.get("/health", (req, res) => {
-  res.json({ status: "API is running" });
+  res.json({ status: "ok", time: new Date().toISOString() });
 });
 
-// User routes
-router.get("/users", getUsers);
-router.post("/users", createUser);
-
-export default router;
-
+module.exports = { router };
