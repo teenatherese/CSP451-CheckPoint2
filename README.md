@@ -42,3 +42,7 @@ To intentionally create a merge conflict, edit the same lines in one of:
 npm test
 npm run lint
 ```
+## Database Connection
+- Central DB module
+- Environment-based config
+
